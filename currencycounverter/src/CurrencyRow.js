@@ -26,3 +26,4 @@ export default function CurrencyRow(props) {
     </div>
   )
 }
+.```
