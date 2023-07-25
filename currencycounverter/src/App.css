@@ -1,31 +1,195 @@
-body{
+body {
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   text-align: center;
-  
+  background-image: url('https://cdn.corporatefinanceinstitute.com/assets/currency.jpeg'); /* Replace with your image URL */
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-h1{
-  margin: 0;
-  margin-bottom: .5rem;
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black overlay */
+  z-index: -1;
 }
 
-.input{
-  border: 1px solid #333;
-  border-radius: .3em ;
-  padding: .25rem;
-  width: 7em;
+h1 {
+  margin: 100px;
+  margin-bottom: 100px; /* Increase the margin-bottom value */
+  color: greenyellow;
+  font-size: 70px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-select{
+.input {
+  border: 5px solid #3be98f;
+  border-radius: 10px;
+  padding: 20px;
+  width: 10em;
+  outline: none;
+  background-color: rgb(131, 222, 184);
+  font-size: 24px;
+}
+
+.input:focus {
+  border-color: #555555;
+}
+
+select {
   margin-left: .5rem;
-
+  padding: 5px;
+  font-size: 16px;
+  background-color: rgb(224, 240, 234); 
+  color: rgb(96, 154, 168);
+  border: 2px solid #4564FA;
+  border-radius: 10px;
 }
 
-.equals{
-  font-weight: bold ;
-  font-size: 2rem;
+.equals {
+  font-weight: bold;
+  font-size: 3rem;
+  color: rgb(202, 210, 209);
 }
+
+.Navbar ul li.no-bullet{
+  list-style-type: none;
+}
+
+
+.Navbar {
+  background-color: rgba(0, 0, 0, 0.3); /* Use the 'rgba' function and set the alpha value (0.3 in this example) */
+  padding: 2px;
+  margin-top: 0px;
+}
+
+
+
+
+.Navbar ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+.Navbar li {
+  margin: 0 10px;
+}
+
+.Navbar a {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.Navbar a:hover {
+  color: #f1f1f1;
+}
+
+
+.login {
+  margin: 50px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.login h2{
+  color: #4564FA;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+
+.signup {
+  margin: 50px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.signup h2 {
+  color: #3be98f;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+
+.weather {
+  margin: 20px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  color: #4564FA;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.weather h2 {
+  margin-bottom: 10px;
+}
+
+.weather p {
+  margin: 5px;
+}
+
+
+.currency {
+  margin: 20px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  color: #4564FA;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.currency h1 {
+  margin-bottom: 20px;
+}
+
+.currency {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Adjust the margin-top value to your preference */
+}
+
+.equals {
+  font-weight: bold;
+  font-size: 3rem;
+  color: blue;
+  margin-top: 10px; 
+}
+
+.home {
+  font-size: 36px;
+  color: #333; 
+  margin-top: 375px;
+  margin-bottom: 50px;
+  background-color: rgba(255, 192, 203, 0.7); 
+  padding: 20px;
+  max-width: 600px; 
+  text-align: center; 
+}
+
+.home h1 {
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+
+

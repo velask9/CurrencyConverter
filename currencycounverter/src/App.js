@@ -1,93 +1,41 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import CurrencyRow from './CurrencyRow';
-
-const Base_url ="https://api.exchangerate.host/latest"
-const request = new XMLHttpRequest();
-request.open('GET', Base_url);
-request.responseType = 'json';
-request.send();
-
-
+import CurrencyConverter from './CurrencyConverter';
+import Navbar from './Components/Nav/Nav'; 
+import SignUpForm from './Pages/SignUpPage';
+import LoginForm from './Pages/LoginPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './Home';
+import Weather from './weather'; 
+import StockMarket from './StockMarket';
+import PrivateRoute from './Components/PrivateRoute';
 
 function App() {
-  const [currencyOptions, setCurrencyOptions] = useState([]);
-  const [fromCurrency, setFromCurrency] = useState();
-  const [toCurrency, setToCurrency] = useState();
-  const [exchangeRate, setExchangeRate] = useState();
-  const [amount, setAmount] = useState(1);
-  const [amountFromCurrency, setAmountFromCurrency]= useState(true)
-  console.log(exchangeRate)
-
-
-  let toAmount, fromAmount
-  if(amountFromCurrency){
-    fromAmount = amount;
-    toAmount = amount * exchangeRate;
-  } else{
-    toAmount = amount;
-    fromAmount = amount / exchangeRate;
-  }
-
-
-
-
-
-  useEffect(() => {
-    fetch(Base_url)
-    .then((res => res.json()))
-    .then((data) => {
-      const firstCurrency = Object.keys(data.rates)[0];
-      setCurrencyOptions([data.base, ...Object.keys(data.rates)]);
-      setFromCurrency(data.base);
-      setToCurrency(firstCurrency);
-      setExchangeRate(data.rates[firstCurrency]);
-    });
-  }, []);
-
-
-useEffect(()=> {
-  if (fromCurrency != null && toCurrency != null){
-    fetch(`${Base_url}?base= ${fromCurrency}&symbols= ${toCurrency}`)
-      .then(res => res.json())
-      .then(data => setExchangeRate(data.rates[toCurrency]))
-
-  }
-
-}, [fromCurrency, toCurrency])
-
-
-function handleFromAmountChange(e){
-  setAmount(e.target.value)
-  setAmountFromCurrency(true)
-}
-
-
-function handleToAmountChange(e){
-  setAmount(e.target.value)
-  setAmountFromCurrency(false)
-}
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Set this to true after successful login
 
   return (
-    <>
-    <h1>Currency Converter</h1>
-    <CurrencyRow
-    currencyOptions= {currencyOptions}
-    selectCurrency= {fromCurrency}
-    onChangeCurrency= {e => setFromCurrency(e.target.value)}
-    onChangeAmount= {handleFromAmountChange}
-    amount = {fromAmount}
-    />
-    <div className='equals'>=</div>
-    <CurrencyRow 
-    currencyOptions= {currencyOptions}
-    selectedCurrency= {toCurrency}
-    onChangeCurrency= {e => setToCurrency(e.target.value)}
-    onChangeAmount= {handleToAmountChange}
-    amount ={toAmount}
-    />
-    </>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sign-up" element={<SignUpForm />} />
+          <Route
+            path="/login"
+            element={<LoginForm setIsAuthenticated={setIsAuthenticated} />}
+          />
+          <Route path="/currency-converter" element={<CurrencyConverter />} />
+          {/* Use PrivateRoute for StockMarket */}
+          <PrivateRoute
+            path="/StockMarket"
+            element={<StockMarket />}
+            isAuthenticated={isAuthenticated}
+          />
+        </Routes>
+        <Weather />
+      </div>
+    </Router>
   );
 }
 
